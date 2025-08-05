@@ -1,5 +1,5 @@
-from aiogram import Bot, Dispatcher
-from aiogram.types import Message
+from aiogram import Bot, Dispatcher, F
+from aiogram.types import Message, ContentType
 from aiogram.filters import Command
 
 BOT_TOKEN: str = ""  # указать токен своего бота
@@ -26,6 +26,15 @@ async def command_help(message: Message) -> None:
     )
 
 
+async def echo_photo(message: Message) -> None:
+    print(message)
+    await message.reply_photo(
+        photo=(
+            message.photo[0].file_id
+        )
+    )
+
+
 async def any_message(message: Message) -> None:
     await message.reply(
         text=(
@@ -36,6 +45,7 @@ async def any_message(message: Message) -> None:
 
 dp.message.register(command_start, Command(commands="start"))
 dp.message.register(command_help, Command(commands="help"))
+dp.message.register(echo_photo, F.content_type == ContentType.PHOTO)
 dp.message.register(any_message)
 
 if __name__ == "__main__":
