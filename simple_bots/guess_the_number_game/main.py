@@ -15,7 +15,7 @@ def get_random_num() -> int:
     return random.randint(1, 100)
 
 
-BOT_TOKEN: str = '6141970881:AAH4JCKHk9lbpTYGg9t6lPaH45IShtidXY8'  # Указать токен.
+BOT_TOKEN: str = ''  # Указать токен.
 
 bot: Bot = Bot(token=BOT_TOKEN)
 dp: Dispatcher = Dispatcher()
